@@ -158,11 +158,12 @@ int32_t CLogger::WriteToLogBuffer(LogLevel logLevel, const char* szFormat, va_li
 	vsprintf(szLog + nLogLen, szFormat, vaList);
 
 	//先写入本条日志的总长度(不包括自己和enmDateStringLength字节时间字符串的长度)
+	nLogLen = strlen(szLog);
 	m_stLoggerBuffer.Write((uint8_t *)&nLogLen, sizeof(nLogLen));
 	//写入日期字符串
 	m_stLoggerBuffer.Write((uint8_t *)szDate, enmDateStringLength);
 	//写入日志内容
-	m_stLoggerBuffer.Write((uint8_t *)szLog, strlen(szLog));
+	m_stLoggerBuffer.Write((uint8_t *)szLog, nLogLen);
 
 	return nLogLen + sizeof(nLogLen) + enmDateStringLength;
 }
