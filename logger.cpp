@@ -104,6 +104,14 @@ int32_t CLogger::Serialize()
 
 		nSize += m_stLoggerBuffer.Read((uint8_t *)szLog, nLogSize);
 
+		if(nLogSize < enmMaxLogStringLength)
+		{
+			szLog[nLogSize] = '\0';
+		}
+		else
+		{
+			szLog[enmMaxLogStringLength - 1] = '\0';
+		}
 		WriteToLogFile(szDate, szLog);
 
 		return nSize;
