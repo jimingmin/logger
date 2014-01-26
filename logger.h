@@ -13,6 +13,8 @@
 #include "../common/common_string.h"
 #include "../common/common_cyclebuffer.h"
 
+#include <stdio.h>
+
 LOGGER_NAMESPACE_BEGIN
 
 #define DECLARE_LOGLEVELLIST	\
