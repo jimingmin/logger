@@ -160,13 +160,17 @@ int32_t CLogger::WriteToLogBuffer(LogLevel logLevel, const char* szFormat, va_li
 	sprintf(szDate, "%04d%02d%02d", dt.Year(), dt.Month(), dt.Day());
 
 	//获取日志信息
-	uint32_t nLogLen = 0;
+	uint32_t nHeadLen = 0;
 	sprintf(szLog, "%04d-%02d-%02d %02d:%02d:%02d %s ", dt.Year(), dt.Month(), dt.Day(), dt.Hour(), dt.Minute(), dt.Second(), arrLogLevel[logLevel]);
-	nLogLen = (uint32_t)strlen(szLog);
-	vsprintf(szLog + nLogLen, szFormat, vaList);
+	nHeadLen = (uint32_t)strlen(szLog);
+	int32_t nContentLen = vsprintf(szLog + nHeadLen, szFormat, vaList);
+	if(nContentLen < 0)
+	{
+		return 0;
+	}
 
 	//先写入本条日志的总长度(不包括自己和enmDateStringLength字节时间字符串的长度)
-	nLogLen = strlen(szLog);
+	uint32_t nLogLen = nHeadLen + nContentLen;//strlen(szLog);
 	m_stLoggerBuffer.Write((uint8_t *)&nLogLen, sizeof(nLogLen));
 	//写入日期字符串
 	m_stLoggerBuffer.Write((uint8_t *)szDate, enmDateStringLength);
