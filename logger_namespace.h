@@ -1,4 +1,4 @@
-/*
+﻿/*
  * logger_namespace.h
  *
  *  Created on: 2013年12月14日

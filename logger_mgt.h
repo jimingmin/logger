@@ -1,4 +1,4 @@
-/*
+﻿/*
  * logger_mgt.h
  *
  *  Created on: 2013年12月14日
@@ -9,7 +9,7 @@
 #define LOGGER_MGT_H_
 
 #include "logger_namespace.h"
-#include "logger.h"
+#include "logger_writer.h"
 #include "../common/common_typedef.h"
 #include "../common/common_singleton.h"
 
@@ -19,14 +19,14 @@ using namespace std;
 
 LOGGER_NAMESPACE_BEGIN
 
-typedef map<string, CLogger *>		LoggerMap;
+typedef map<string, CLoggerWriter *>		LoggerMap;
 
 class CLoggerMgt
 {
 public:
-	void RegistLogger(const char *strLoggerName, CLogger *pLogger);
+	void RegistLogger(const char *strLoggerName, CLoggerWriter *pLogger);
 
-	CLogger *GetLogger(const char *strLoggerName);
+	CLoggerWriter *GetLogger(const char *strLoggerName);
 
 	LoggerMap::iterator GetBeginIterator();
 

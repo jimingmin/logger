@@ -1,4 +1,4 @@
-/*
+﻿/*
  * logger_mgt.cpp
  *
  *  Created on: 2013年12月14日
@@ -9,14 +9,14 @@
 
 LOGGER_NAMESPACE_BEGIN
 
-void CLoggerMgt::RegistLogger(const char *strLoggerName, CLogger *pLogger)
+void CLoggerMgt::RegistLogger(const char *strLoggerName, CLoggerWriter *pLogger)
 {
 	m_stLoggerMgt[string(strLoggerName)] = pLogger;
 }
 
-CLogger *CLoggerMgt::GetLogger(const char *strLoggerName)
+CLoggerWriter *CLoggerMgt::GetLogger(const char *strLoggerName)
 {
-	CLogger *pLogger = NULL;
+	CLoggerWriter *pLogger = NULL;
 	LoggerMap::iterator it = m_stLoggerMgt.find(string(strLoggerName));
 	if(it != m_stLoggerMgt.end())
 	{
@@ -24,7 +24,7 @@ CLogger *CLoggerMgt::GetLogger(const char *strLoggerName)
 	}
 	else
 	{
-		pLogger = new CLogger(strLoggerName);
+		pLogger = new CLoggerWriter(strLoggerName);
 		RegistLogger(strLoggerName, pLogger);
 	}
 

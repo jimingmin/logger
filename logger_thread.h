@@ -1,4 +1,4 @@
-/*
+﻿/*
  * logger_thread.h
  *
  *  Created on: 2013年12月14日
@@ -9,6 +9,7 @@
 #define LOGGER_THREAD_H_
 
 #include "logger_namespace.h"
+#include "../common/common_singleton.h"
 #include "../common/common_thread.h"
 
 LOGGER_NAMESPACE_BEGIN
@@ -20,6 +21,7 @@ public:
 	virtual void Execute();
 };
 
+#define g_LoggerThread		CSingleton<CLoggerThread>::GetInstance()
 
 LOGGER_NAMESPACE_END
 

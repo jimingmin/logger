@@ -1,4 +1,4 @@
-/*
+﻿/*
  * logger_thread.cpp
  *
  *  Created on: 2013年12月14日
@@ -21,7 +21,7 @@ void CLoggerThread::Execute()
 		LoggerMap::iterator it = g_LoggerMgt.GetBeginIterator();
 		for(; it != g_LoggerMgt.GetEndIterator(); ++it)
 		{
-			CLogger *pLogger = it->second;
+			CLoggerWriter *pLogger = it->second;
 			if(pLogger->Serialize() > 0)
 			{
 				bIdle = false;
