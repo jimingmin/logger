@@ -169,7 +169,7 @@ int32_t CLoggerWriter::WriteToLogBuffer(LogLevel logLevel, const char* szFormat,
 void CLoggerWriter::WriteToLogFile(const char* szDate, const char* szLog)
 {
 	char szFileName[enmMaxFullPathLength] = { 0 };
-	sprintf(szFileName, "./log/%s%s.log", m_stLogName.GetString(), szDate);
+	sprintf(szFileName, "./log/%s%s.log", m_stLogName.c_str(), szDate);
 
 	//从日志文件状态列表中查找文件
 	bool bWritten = false;

@@ -10,12 +10,13 @@
 
 #include "logger_namespace.h"
 #include "../common/common_typedef.h"
-#include "../common/common_string.h"
 #include "../common/common_cyclebuffer.h"
 
 #include <stdio.h>
 #include <stdarg.h>
 #include <stddef.h>
+#include <string>
+using namespace std;
 
 LOGGER_NAMESPACE_BEGIN
 
@@ -95,7 +96,7 @@ protected:
 	virtual int32_t WriteToLogBuffer(LogLevel logLevel, const char* szFormat, const char *szFile, int32_t nLineNo, va_list vaList);
 
 protected:
-	CString<enmMaxLogFileNameLength>	m_stLogName;			//日志文件名
+	string								m_stLogName;			//日志文件名
 	int32_t								m_nRollingSize;			//日志文件分卷大小
 	CycleBuffer<enmDefaultBufSize>		m_stLoggerBuffer;		//日志缓存
 	//各日志文件状态
