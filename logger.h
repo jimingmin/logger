@@ -39,7 +39,7 @@ public:
 	EXPORT static void Error(const char *strLoggerName, const char *szFile, int32_t nLineNo, const char* szFormat, ...);
 
 protected:
-	static bool		m_bStart;
+	static bool		m_bStartddd;
 };
 
 #define WRITE_DEBUG_LOG(LOGGERNAME, FORMAT, ...)		CLogger::Debug(LOGGERNAME, __FILE__, __LINE__, FORMAT, ##__VA_ARGS__)
