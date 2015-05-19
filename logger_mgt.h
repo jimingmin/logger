@@ -24,6 +24,7 @@ typedef map<string, CLoggerWriter *>		LoggerMap;
 class CLoggerMgt
 {
 public:
+
 	void RegistLogger(const char *strLoggerName, CLoggerWriter *pLogger);
 
 	CLoggerWriter *GetLogger(const char *strLoggerName);
