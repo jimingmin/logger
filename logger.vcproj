@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LOGGER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -183,6 +184,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\logger_capi.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\logger_capi.h"
+			>
+		</File>
+		<File
 			RelativePath=".\logger_mgt.cpp"
 			>
 		</File>
@@ -208,10 +217,6 @@
 		</File>
 		<File
 			RelativePath=".\logger_writer.h"
-			>
-		</File>
-		<File
-			RelativePath=".\targetver.h"
 			>
 		</File>
 	</Files>
