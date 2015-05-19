@@ -87,10 +87,10 @@ public:
 
 	int32_t Error(const char* szFormat, const char *szFile, int32_t nLineNo, va_list vaList);
 
-	int32_t Serialize();
+	int32_t Serialize(const char *szLogDir);
 protected:
 	//将日志写入到文件
-	void WriteToLogFile(const char* szDate, const char* szLog);
+	void WriteToLogFile(const char *szLogDir, const char* szDate, const char* szLog);
 	//将日志超出限制处理
 	void MoveLogFile(int32_t max_file_size, const char* file_name, FILE*& pf);
 	virtual int32_t WriteToLogBuffer(LogLevel logLevel, const char* szFormat, const char *szFile, int32_t nLineNo, va_list vaList);

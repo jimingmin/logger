@@ -9,7 +9,9 @@
 #include "../common/common_datetime.h"
 #include <stdarg.h>
 #include <stddef.h>
+#ifndef WIN32
 #include <unistd.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -56,7 +58,7 @@ int32_t CLoggerWriter::Error(const char* szFormat, const char *szFile, int32_t n
 	return WriteToLogBuffer(enmLogLevel_Error, szFormat, szFile, nLineNo, vaList);
 }
 
-int32_t CLoggerWriter::Serialize()
+int32_t CLoggerWriter::Serialize(const char *szLogDir)
 {
 	char szLog[enmMaxLogStringLength];
 	szLog[0] = '\0';
@@ -97,7 +99,7 @@ int32_t CLoggerWriter::Serialize()
 		{
 			szLog[enmMaxLogStringLength - 1] = '\0';
 		}
-		WriteToLogFile(szDate, szLog);
+		WriteToLogFile(szLogDir, szDate, szLog);
 
 		return nSize;
 	}
@@ -166,10 +168,17 @@ int32_t CLoggerWriter::WriteToLogBuffer(LogLevel logLevel, const char* szFormat,
 }
 
 //将日志写入到文件
-void CLoggerWriter::WriteToLogFile(const char* szDate, const char* szLog)
+void CLoggerWriter::WriteToLogFile(const char *szLogDir, const char* szDate, const char* szLog)
 {
 	char szFileName[enmMaxFullPathLength] = { 0 };
-	sprintf(szFileName, "./log/%s%s.log", m_stLogName.c_str(), szDate);
+	if((szLogDir == NULL) || (szLogDir[0] == '\0'))
+	{
+		sprintf(szFileName, "./log/%s%s.log", m_stLogName.c_str(), szDate);
+	}
+	else
+	{
+		sprintf(szFileName, "%s/%s%s.log", szLogDir, m_stLogName.c_str(), szDate);
+	}
 
 	//从日志文件状态列表中查找文件
 	bool bWritten = false;
