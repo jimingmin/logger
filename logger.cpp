@@ -26,6 +26,11 @@ CLogger::~CLogger()
 
 }
 
+int32_t CLogger::SetLogDir(const char *szLogDir)
+{
+	return g_LoggerThread.SetLogDir(szLogDir);
+}
+
 void CLogger::RegistLogger(const char *strLoggerName, CLoggerWriter *pLogger)
 {
 	g_LoggerMgt.RegistLogger(strLoggerName, pLogger);

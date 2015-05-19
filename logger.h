@@ -22,6 +22,8 @@ public:
 	EXPORT CLogger();
 	EXPORT virtual ~CLogger();
 
+	EXPORT static int32_t SetLogDir(const char *szLogDir);
+
 	EXPORT static void RegistLogger(const char *strLoggerName, CLoggerWriter *pLogger);
 
 	EXPORT static CLoggerWriter *GetLogger(const char *strLoggerName);

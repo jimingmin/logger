@@ -11,6 +11,18 @@
 
 LOGGER_NAMESPACE_BEGIN
 
+int32_t CLoggerThread::SetLogDir(const char *szLogDir)
+{
+	if(strlen(szLogDir) > enmMaxFullPathLength / 2)
+	{
+		return 1;
+	}
+
+	strcpy(m_szLogDir, szLogDir);
+	m_szLogDir[strlen(szLogDir)] = '\0';
+	return 0;
+}
+
 void CLoggerThread::Execute()
 {
 	bool bIdle = true;
@@ -22,7 +34,7 @@ void CLoggerThread::Execute()
 		for(; it != g_LoggerMgt.GetEndIterator(); ++it)
 		{
 			CLoggerWriter *pLogger = it->second;
-			if(pLogger->Serialize() > 0)
+			if(pLogger->Serialize(m_szLogDir) > 0)
 			{
 				bIdle = false;
 			}
@@ -31,7 +43,7 @@ void CLoggerThread::Execute()
 		//所有队列中都没有日志
 		if (bIdle)
 		{
-			Delay(10000);
+			Delay(1);
 		}
 	}
 }
