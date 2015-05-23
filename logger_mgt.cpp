@@ -17,6 +17,11 @@ void CLoggerMgt::RegistLogger(const char *strLoggerName, CLoggerWriter *pLogger)
 CLoggerWriter *CLoggerMgt::GetLogger(const char *strLoggerName)
 {
 	CLoggerWriter *pLogger = NULL;
+	if(strLoggerName == NULL)
+	{
+		return NULL;
+	}
+
 	LoggerMap::iterator it = m_stLoggerMgt.find(string(strLoggerName));
 	if(it != m_stLoggerMgt.end())
 	{
