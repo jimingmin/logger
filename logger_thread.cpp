@@ -43,7 +43,7 @@ void CLoggerThread::Execute()
 		//所有队列中都没有日志
 		if (bIdle)
 		{
-			Delay(50000);
+			Delay(1);
 		}
 	}
 }
