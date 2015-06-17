@@ -14,7 +14,7 @@ EXPORT int32_t stop_log_thread();
 
 EXPORT int32_t set_log_dir(const char *szLogDir);
 
-EXPORT void write_debug_log(const char *szLoggerName, const char *szFormat, ...);
+EXPORT void write_debug_log(const char *szFileName, int32_t nLineNo, const char *szLoggerName, const char *szFormat, ...);
 
 #ifdef __cplusplus
 }
