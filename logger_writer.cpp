@@ -173,7 +173,7 @@ void CLoggerWriter::WriteToLogFile(const char *szLogDir, const char* szDate, con
 	char szFileName[enmMaxFullPathLength] = { 0 };
 	if((szLogDir == NULL) || (szLogDir[0] == '\0'))
 	{
-		sprintf(szFileName, "./log/%s%s.log", m_stLogName.c_str(), szDate);
+		sprintf(szFileName, "./log/%s%s_%u.log", m_stLogName.c_str(), szDate, getpid());
 	}
 	else
 	{
